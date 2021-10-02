@@ -1,30 +1,30 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+    <app-header>asd</app-header>
+    <note-form>
+        <note-item></note-item>
+    </note-form>
 </template>
 
+<script>
+import AppHeader from "@/components/AppHeader.vue";
+import NoteItem from "@/components/NoteItem.vue";
+import NoteForm from "@/components/NoteForm.vue";
+export default {
+  components: {
+    NoteItem,
+    NoteForm,
+    AppHeader,
+  }
+};
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+html {
+  overflow: hidden;
 }
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 </style>
