@@ -1,12 +1,16 @@
 <template>
     <div>
-        <button class="button">+</button>
+        <button class="button" @click="createNote">+</button>
     </div>
 </template>
 
 <script>
 export default {
     name: "note-button",
+    methods:{
+
+    }
+
 };
 </script>
 
