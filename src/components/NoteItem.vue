@@ -1,58 +1,173 @@
 <template>
-  <div class="note__item">
-    <h2 class="note__headliner">{{ note.title }}</h2>
-    <p class="note__text">{{ note.body }}</p>
+  <div>
+    <div
+        class="note__item"
+        v-if="noteStatus"
+    >
+      <div
+          class="note__text"
+          :class="[$store.state.note.isDark ? 'note__text--dark note__body--dark note__text--dark'  : '']"
+      >
+        <div class="note__header">
+          <h2 class="note__title">{{ note.title }}</h2>
+          <div class="note__icons">
+            <fa
+                @click="setEdit"
+                icon="edit"
+            ></fa>
+          </div>
+        </div>
+        <p class="note__body">{{ note.body }}</p>
+      </div>
+
+    </div><!-- ----------------------- text ----------------------- -->
+    <div
+        class="note__item"
+        v-else
+    >
+      <div class="note__form">
+        <div
+            class="note__header"
+        >
+          <input
+              v-model="noteEdit.title"
+              class="note__input"
+              type="text"
+              placeholder="Заголовок"
+          />
+          <div class="note__icons">
+            <fa
+                @click="onSubmit"
+                icon="check"></fa>
+          </div>
+        </div>
+        <my-input
+            v-model="noteEdit.body"
+            class="note__input"
+        ></my-input>
+      </div>
+    </div><!-- ----------------------- form ----------------------- -->
   </div>
+
 </template>
 
 <script>
+
+
+import MyInput from "./UI/MyInput";
+
 export default {
+  components: {MyInput},
   props: {
     note: {
       type: Object,
-      required: true,
+    },
+  },
+  data() {
+    return {
+      noteStatus: true,
+      noteEdit: {
+        id: null,
+        title: '',
+        body: '',
+      },
+      isDark: false,
     }
+  },
+  watch: {
+    noteEdit: {
+      handler() {
+        this.noteEdit.id = this.note.id
+        this.noteEdit.title = this.note.title
+        this.noteEdit.body = this.note.body
+      },
+      immediate: true
+    }
+  },
+  methods: {
+    setEdit() {
+      this.noteStatus = false;
+
+    },
+    onSubmit() {
+      this.noteStatus = true;
+      this.$emit('updateNoteEdit', this.noteEdit)
+    },
+
+
   }
-};
+
+}
+;
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .note__item {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1;
-  width: 204px;
-  height: 204px;
-  border-radius: 20px;
-  border: 2px solid #adadad;
-  background-color: white;
-  padding: 20px;
-  margin: 20px;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  break-inside: avoid;
+  padding-bottom: 0.7em;
+
+    .note__header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+
 }
 
-.note__headliner {
-  height: 20%;
 
-  border-radius: 15px 15px 0 0;
-  border: 2px solid #adadad;
+/* note text*/
 
-  text-align: center;
-  font-family: "Georama", sans-serif;
-  font-size: 15px;
-  overflow: auto;
+.note__text {
+  padding: 1rem;
+  background-color: white;
+  border-radius: 20px;
+  border: 0.5px solid #adadad;
+}
+
+.note__text--dark {
+  background-color: black;
+}
+
+.note__text--dark {
+  color: white;
+}
+
+.note__body--dark {
+  color: #adadad;
+}
+
+.note__title {
+  padding: 0px 10px;
+  border: 0.5px solid #adadad;
+  border-radius: 0 0 0 0;
+  font-size: 20px;
+}
+
+
+.note__body {
+  border: 0.5px solid #adadad;
+  border-radius: 0 0 0 0;
+}
+
+/* note form*/
+.note__form {
+  background-color: blue;
+  border-radius: 20px;
+  border: 0.5px solid #adadad;
+}
+
+.note__input {
+  border: 0.5px solid #adadad;
+  border-radius: 0 0 0 0;
   margin-bottom: 10px;
 }
 
-.note__text {
-  height: 80%;
-
-  border-radius: 0 0 15px 15px;
-  border: 2px solid #adadad;
-
-  overflow: hidden;
-  text-align: center;
-  font-family: "Georama", sans-serif;
-  font-size: 12px;
+.note__textArea {
+  border: 0.5px solid #adadad;
+  border-radius: 0 0 0 0;
 }
 </style>
 

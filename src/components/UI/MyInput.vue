@@ -23,16 +23,16 @@ export default {
 </script>
 
 <style scoped>
-/*
+
 .input {
     display: block;
     border: 1px solid #c4c4c4;
-    border-radius: 10px;
+    border-radius: 25px;
     margin-bottom: 10px;
 
 }
 .input::placeholder:focus {
     color: transparent;
 }
-*/
+
 </style>

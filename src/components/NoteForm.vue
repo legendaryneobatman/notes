@@ -1,51 +1,40 @@
 <template>
   <form @submit.prevent class="note">
-    <div><!-- TODO: "create form component" -->
-      <input
-          :value="note.title"
-          @input="inputTitle"
-          class="note__input"
-          type="text"
-          placeholder="Заголовок"
+    <div>
+      <my-imput
+          v-model="note.title"
       />
-      <textarea
-          :value="note.body"
-          @input="inputBody"
-          class="note__textArea"
-      ></textarea>
-      <button @click="createNote" class="form__button">create</button>
+      <my-input
+          v-model="note.body"
+      />
+      <button
+          @click="createNote"
+          class="form__button"
+      >create</button>
     </div>
   </form><!-- note-form -->
 </template>
 
 <script>
+import MyInput from "./UI/MyInput";
 export default {
   name: "note-form",
+  components: {MyInput},
   props: {
-    notes: {type:Array, required: true}
+    notes: {type: Array, required: true}
   },
   data() {
-    return {
-      note: {
-        title:"",
-        body:"",
-      }
-    }
+    return {}
   },
   methods: {
-    inputTitle(event) {
-      this.note.title = event.target.value
-    },
-    inputBody(event) {
-      this.note.body = event.target.value
-    },
     createNote() {
       this.note.id = Date.now();
       this.$emit("create", this.note);
-      this.note = {
+      this.post = {
         title: "",
         body: "",
       };
+      console.log(this.note);
     },
   },
 }
@@ -67,6 +56,7 @@ export default {
   color: black;
   font-family: "Georama", sans-serif;
 }
+
 .note__input {
   border-radius: 15px 15px 0 0;
   border: 2px solid #e40000;
@@ -78,6 +68,7 @@ export default {
   font-family: "Georama", sans-serif;
   font-size: 15px;
 }
+
 .note__textArea {
   display: flex;
   width: 156px;
@@ -96,6 +87,7 @@ export default {
   font-family: "Georama", sans-serif;
   font-size: 15px;
 }
+
 .form__button {
   width: 156px;
   height: 20px;
