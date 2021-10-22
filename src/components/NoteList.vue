@@ -1,15 +1,13 @@
 <template>
-  <div class="note__list">
+  <div class="note-list">
     <note-item
     v-for="note in notes"
     :key="note.id"
     :note="note"
+    class="note-list__item"
     @updateNoteEdit="onChange"
     ></note-item>
-
-    <!-- note item -->
   </div>
-  <!-- note list -->
 </template>
 
 <script>
@@ -25,9 +23,7 @@ export default {
       required: true,
     },
   },
-  data() {
-
-  },
+  data: () => ({}),
   methods: {
     onChange(note){
       this.$emit('onChange', note)
@@ -37,10 +33,18 @@ export default {
 };
 </script>
 
-<style scoped>
-.note__list {
+<style lang="scss" scoped>
+.note-list {
   column-count: 2;
   grid-column-gap: 0.7em;
+
+  &__item {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    break-inside: avoid;
+    padding-bottom: 0.7em;
+    margin-bottom: 10px;
+  }
 }
 
 </style>

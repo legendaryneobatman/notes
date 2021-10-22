@@ -1,63 +1,29 @@
 <template>
-  <div>
-    <div
-        class="note__item"
-        v-if="noteStatus"
-    >
-      <div
-          class="note__text"
-          :class="[$store.state.note.isDark ? 'note__text--dark note__body--dark note__text--dark'  : '']"
-      >
-        <div class="note__header">
-          <h2 class="note__title">{{ note.title }}</h2>
-          <div class="note__icons">
-            <fa
-                @click="setEdit"
-                icon="edit"
-            ></fa>
-          </div>
-        </div>
-        <p class="note__body">{{ note.body }}</p>
-      </div>
-
-    </div><!-- ----------------------- text ----------------------- -->
-    <div
-        class="note__item"
+  <div class="note-item">
+    <note-view
+        v-if="isEdit"
+        :note="note"
+        class="note-item__view"
+        @toggleEdit="toggleEdit"
+    />
+    <note-form
         v-else
-    >
-      <div class="note__form">
-        <div
-            class="note__header"
-        >
-          <input
-              v-model="noteEdit.title"
-              class="note__input"
-              type="text"
-              placeholder="Заголовок"
-          />
-          <div class="note__icons">
-            <fa
-                @click="onSubmit"
-                icon="check"></fa>
-          </div>
-        </div>
-        <my-input
-            v-model="noteEdit.body"
-            class="note__input"
-        ></my-input>
-      </div>
-    </div><!-- ----------------------- form ----------------------- -->
+        :note="note"
+        class="note-item__form"
+        @toggleEdit="toggleEdit"
+    />
   </div>
-
 </template>
 
 <script>
 
-
-import MyInput from "./UI/MyInput";
-
+import NoteForm from "./NoteForm";
+import NoteView from "./NoteView";
 export default {
-  components: {MyInput},
+  components: {
+    NoteView,
+    NoteForm
+  },
   props: {
     note: {
       type: Object,
@@ -65,109 +31,24 @@ export default {
   },
   data() {
     return {
-      noteStatus: true,
-      noteEdit: {
-        id: null,
-        title: '',
-        body: '',
-      },
-      isDark: false,
-    }
-  },
-  watch: {
-    noteEdit: {
-      handler() {
-        this.noteEdit.id = this.note.id
-        this.noteEdit.title = this.note.title
-        this.noteEdit.body = this.note.body
-      },
-      immediate: true
+      isEdit: true,
     }
   },
   methods: {
-    setEdit() {
-      this.noteStatus = false;
-
+    toggleEdit() {
+      this.isEdit = !this.isEdit;
     },
-    onSubmit() {
-      this.noteStatus = true;
-      this.$emit('updateNoteEdit', this.noteEdit)
-    },
-
-
   }
-
 }
 ;
 </script>
 
 <style lang="scss" scoped>
-.note__item {
-  display: grid;
-  grid-template-rows: 1fr auto;
-  break-inside: avoid;
-  padding-bottom: 0.7em;
-
-    .note__header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-    }
-
-
-}
-
-
-/* note text*/
-
-.note__text {
+.note-item {
+  background: white;
   padding: 1rem;
-  background-color: white;
   border-radius: 20px;
   border: 0.5px solid #adadad;
-}
-
-.note__text--dark {
-  background-color: black;
-}
-
-.note__text--dark {
-  color: white;
-}
-
-.note__body--dark {
-  color: #adadad;
-}
-
-.note__title {
-  padding: 0px 10px;
-  border: 0.5px solid #adadad;
-  border-radius: 0 0 0 0;
-  font-size: 20px;
-}
-
-
-.note__body {
-  border: 0.5px solid #adadad;
-  border-radius: 0 0 0 0;
-}
-
-/* note form*/
-.note__form {
-  background-color: blue;
-  border-radius: 20px;
-  border: 0.5px solid #adadad;
-}
-
-.note__input {
-  border: 0.5px solid #adadad;
-  border-radius: 0 0 0 0;
-  margin-bottom: 10px;
-}
-
-.note__textArea {
-  border: 0.5px solid #adadad;
-  border-radius: 0 0 0 0;
 }
 </style>
 

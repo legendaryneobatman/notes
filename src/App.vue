@@ -1,54 +1,50 @@
 <template>
-  <header>
-    <fa
-        icon="star-half-alt"
-        @click="toggleTheme"
-    />
-  </header>
+  <div id="note-app" class="notes">
+    <header class="notes__header">
+      <fa
+          icon="star-half-alt"
+          @click="toggleTheme"
+      />
+    </header>
     <note-list
         :notes="notes"
-        @onChange="updateNote"
+        class="notes__list"
     ></note-list>
-    <note-button @create="createNote"></note-button>
-  <!-- BODY OF APP containes note list and form -->
+    <float-button
+        class="notes__button"
+        @click="createEmptyNote"
+    >
+      +
+    </float-button>
+  </div>
 </template>
 
 <script>
-import NoteButton from '@/components/NoteButton.vue'
+import { v4 as uuidv4 } from 'uuid';
 import NoteList from '@/components/NoteList.vue'
+import FloatButton from "./components/UI/FloatButton";
 
 export default {
   components: {
-    NoteButton,
+    FloatButton,
     NoteList,
   },
-  data() {
-    return {
-      notes: [
-        {id: 1, title: "Javascript 1", body: "Описание поста 1"},
-        {id: 2, title: "Javascript 2", body: "Описание поста 2"},
-        {id: 3, title: "Javascript 3", body: "Описание поста 3"},
-      ],
-    };
+  data: () => ({
+    search: ''
+  }),
+  computed: {
+    notes () {
+      return this.$store.getters['note/getNotes'](this.search)
+    }
   },
   methods: {
-    createNote(note) {
-      this.notes.push(note);
-
-    },
-    updateNote(note) {
-      const index = this.notes.findIndex((item) => item.id === note.id)
-      this.notes[index] = note
-    },
     toggleTheme() {
       this.$store.dispatch('note/toggleTheme')
     },
-
-
+    createEmptyNote() {
+      this.$store.dispatch('note/addNote', { id: uuidv4(), title: '', body: '' })
+    }
   },
-  computed: {
-
-  }
 };
 </script>
 
@@ -62,5 +58,13 @@ html {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+.notes {
+  padding: 10px;
+
+  &__list {
+    margin-top: 20px;
+  }
 }
 </style>
