@@ -24,11 +24,7 @@ export default {
   },
   data() {
     return {
-      notes: [
-        {id: 1, title: "Javascript 1", body: "Описание поста 1"},
-        {id: 2, title: "Javascript 2", body: "Описание поста 2"},
-        {id: 3, title: "Javascript 3", body: "Описание поста 3"},
-      ],
+      notes: [],
     };
   },
   methods: {
@@ -39,20 +35,40 @@ export default {
     updateNote(note) {
       const index = this.notes.findIndex((item) => item.id === note.id)
       this.notes[index] = note
+      window.localStorage.setItem('notes', JSON.stringify(this.notes))
     },
     toggleTheme() {
       this.$store.dispatch('note/toggleTheme')
     },
-
+    initLocalStorage() {
+      if (localStorage.getItem("notes") === null) {
+        window.localStorage.setItem('notes', JSON.stringify(this.notes))
+      } else {
+        this.notes = JSON.parse(window.localStorage.getItem('notes'))
+      }
+    },
 
   },
   computed: {
 
+  },
+  mounted() {
+    this.initLocalStorage()
   }
 };
 </script>
 
-<style lang="scss">
+<style >
+:root {
+  --app-background-color: #FFFFFF;
+  --dynamic-title-color: #363636;
+  --dynamic-subtitle-color: #4a4a4a;
+}
+[theme="dark"] {
+  --app-background-color: #000000;
+  --dynamic-title-color: #FFFFFF;
+  --dynamic-subtitle-color: #e0e0e0;
+}
 html {
   overflow: hidden;
   background-color: #e0e0e0;

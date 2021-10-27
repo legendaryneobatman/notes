@@ -11,10 +11,15 @@
         <div class="note__header">
           <h2 class="note__title">{{ note.title }}</h2>
           <div class="note__icons">
-            <fa
+            <button
                 @click="setEdit"
-                icon="edit"
-            ></fa>
+            >
+              <fa
+
+                  icon="edit"
+                  style="pointer-events: none"
+              ></fa>
+            </button>
           </div>
         </div>
         <p class="note__body">{{ note.body }}</p>
@@ -38,7 +43,8 @@
           <div class="note__icons">
             <fa
                 @click="onSubmit"
-                icon="check"></fa>
+                icon="check"
+            ></fa>
           </div>
         </div>
         <my-input
@@ -74,6 +80,27 @@ export default {
       isDark: false,
     }
   },
+
+  methods: {
+    setEdit() {
+      this.noteStatus = false;
+      document.addEventListener('click', this.outsideClickListener)
+
+    },
+    onSubmit() {
+      this.noteStatus = true;
+      this.$emit('updateNoteEdit', this.noteEdit)
+    },
+    outsideClickListener(event) {
+      const target = event.target;
+      if (this.$el.contains(target) == false && !this.noteStatus) {
+        console.log(this.$el.contains(target));
+        this.onSubmit();
+
+      }
+
+    },
+  },
   watch: {
     noteEdit: {
       handler() {
@@ -84,18 +111,7 @@ export default {
       immediate: true
     }
   },
-  methods: {
-    setEdit() {
-      this.noteStatus = false;
 
-    },
-    onSubmit() {
-      this.noteStatus = true;
-      this.$emit('updateNoteEdit', this.noteEdit)
-    },
-
-
-  }
 
 }
 ;
@@ -154,18 +170,22 @@ export default {
 
 /* note form*/
 .note__form {
+  justify-content: space-between;
+  padding: 10px;
   background-color: blue;
   border-radius: 20px;
   border: 0.5px solid #adadad;
 }
 
 .note__input {
+  width:  100%;
   border: 0.5px solid #adadad;
   border-radius: 0 0 0 0;
   margin-bottom: 10px;
 }
 
 .note__textArea {
+  width:  100%;
   border: 0.5px solid #adadad;
   border-radius: 0 0 0 0;
 }
