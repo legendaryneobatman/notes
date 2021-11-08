@@ -19,16 +19,19 @@ export default {
             this.$emit("update:modelValue", event.target.value);
         },
     },
-};
+}
 </script>
 
 <style scoped>
 
 .input {
-    display: block;
-    border: 1px solid #c4c4c4;
-    border-radius: 25px;
-    margin-bottom: 10px;
+  display: block;
+  border: 1px solid #c4c4c4;
+  border-radius: 25px;
+  margin-bottom: 10px;
+  padding: 0.5em;
+  text-align: center;
+  width: 100%;
 
 }
 .input::placeholder:focus {

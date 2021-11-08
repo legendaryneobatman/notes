@@ -1,31 +1,18 @@
 <template>
   <div>
-    <button class="button" @click="createNote">+</button>
+    <button
+        class="button"
+        @click="createNote"
+    >+</button>
   </div>
 </template>
 
 <script>
 export default {
   name: "note-button",
-  props: {
-    notes: {type: Array, required: true}
-  },
-  data() {
-    return {
-      note: {
-        title: "",
-        body: "",
-      }
-    }
-  },
   methods: {
     createNote() {
-      this.note.id = Date.now();
-      this.$emit("create", this.note);
-      this.post = {
-        title: "",
-        body: "",
-      };
+      this.$store.dispatch('note/addNote')
     },
   }
 
