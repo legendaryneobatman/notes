@@ -1,7 +1,10 @@
 <template>
-  <div class="note-view">
-    <h2 class="note-view__title">title{{  }}</h2>
-    <p class="note-view__body">body{{ }}</p>
+  <div
+      class="note-view"
+      @click="showNoteEdit"
+  >
+    <h2 class="note-view__title">{{ note.title }}</h2>
+    <p class="note-view__body">{{ note.body }}</p>
   </div>
 </template>
 
@@ -9,7 +12,11 @@
 
 export default {
   name: "note-view",
-  components: {},
+  props:{
+    note:{
+      type:Object,
+    }
+  },
   methods: {
     deleteNote() {
       this.$store.dispatch('note/deleteNote',)
@@ -24,12 +31,14 @@ export default {
         this.onSubmit();
       }
     },
+    showNoteEdit() {
+      /* eslint-disable no-console */
+
+      /* eslint-disable no-console */
+    },
+
 
   },
-  mounted() {
-
-  }
-
 }
 </script>
 

@@ -1,26 +1,35 @@
 export const note = {
   namespaced: true,
   state: () => ({
-    notes: JSON.parse(window.localStorage.getItem('notes')) || [{id:Date.now(), title:'', body:'',}],
-    noteStatus: false,
+    notes: JSON.parse(window.localStorage.getItem('notes')) || [
+        {id:Date.now(), title:'Заголовок заметки', body:'Тело заметки', noteStatus:false}
+    ],
+    noteEdit:{id:Date.now(), title:'noteEdit.title', body:'noteEdit.title', noteStatus:false},
   }),
   getters: {
-    NOTES: state => {
-      return state.notes
-    }
+
   },
   mutations: {
     ADD_NOTE(state, note) {
       state.notes.push(note);
-      /* eslint-disable no-console */
-      console.log(state.notes, note)
-      /* eslint-disable no-console */
       window.localStorage.setItem('notes', JSON.stringify(state.notes))
     },
     UPDATE_NOTE(state, note) {
       const index = state.notes.findIndex(item => item.id === note.id);
       state.notes[index] = note;
       window.localStorage.setItem("notes", JSON.stringify(state.notes));
+    },
+    UPDATE_NOTE_FORM_TITLE(state, payload){
+      const index = state.notes.findIndex(item => item.id === payload.note.id)
+      /* eslint-disable no-console */
+      state.notes[index].title=event.target.value
+      //console.log(state.notes[index].title, event.target.value)
+    },
+    UPDATE_NOTE_FORM_BODY(state, payload){
+      const index = state.notes.findIndex(item => item.id === payload.note.id)
+      /* eslint-disable no-console */
+      state.notes[index].body=event.target.value
+      //console.log(state.notes[index].title, event.target.value)
     },
     DELETE_NOTE(state, note) {
       const index = state.notes.findIndex(item => item/*.id*/ === note/*.id*/);
@@ -29,26 +38,31 @@ export const note = {
       console.log('sss')
       /* eslint-disable no-console */
     },
-    CHANGE__NOTE_STATUS(state) {
-      state.noteStatus = !state.noteStatus
+    CHANGE__NOTE_STATUS(state, note) {
+      const index = state.notes.findIndex(item => item.id === note.id);
+      state.notes[index].noteStatus = !state.notes[index].noteStatus
     }
   },
   actions: {
     addNote({ commit }) {
       commit("ADD_NOTE", {
-        id: Date.now(),
-        title: "",
-        body: "",
+        id:Date.now(), title:'Заголовок заметки', body:'Тело заметки', noteStatus:false
       });
     },
     updateNote({ commit, }, note) {
       commit("UPDATE_NOTE", note);
     },
+    updateNoteFormTitle({commit,}, payload) {
+      commit("UPDATE_NOTE_FORM_TITLE", payload);
+    },
+    updateNoteFormBody({commit,}, payload) {
+      commit("UPDATE_NOTE_FORM_BODY", payload);
+    },
     deleteNote({commit,}, note) {
       commit('DELETE_NOTE', note)
     },
-    changeNoteStatus({commit,}, noteStatus) {
-      commit('CHANGE__NOTE_STATUS', noteStatus)
+    changeNoteStatus({commit,}, note) {
+      commit('CHANGE__NOTE_STATUS', note)
     }
   }
 };

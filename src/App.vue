@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="app" id="app" ref="app">
     <app-header/>
     <note-list/>
     <note-button/>
