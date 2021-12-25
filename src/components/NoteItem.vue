@@ -90,7 +90,7 @@ export default {
   min-height: 100px;
 
   margin: 0;
-  padding-bottom: 0.7em;
+  padding-bottom: 2em;
 
   &-item {
     display: grid;

@@ -13,14 +13,14 @@ export default {
   methods: {
     createNote() {
       this.$store.dispatch('note/addNote')
-      
+
     },
   }
 
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .button {
   position: fixed;
   top: 90%;
@@ -33,16 +33,10 @@ export default {
   border: none;
   background: rgb(253, 201, 30);
   color: white;
-  transition: background 2s linear;
-
+  transition: 0.3s ease-out;
+  &:hover {
+    background: rgb(63, 94, 251);
+  }
 }
 
-button:hover {
-  background: rgb(63, 94, 251);
-  background: linear-gradient(
-      90deg,
-      rgba(63, 94, 251, 1) 0%,
-      rgba(252, 70, 107, 1) 100%
-  );
-}
 </style>

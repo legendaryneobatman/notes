@@ -4,10 +4,9 @@
       @click="showNoteEdit"
   >
     <nav class="note-view__menu">
-      <fa
-          icon="ellipsis-v"
-          @click="deleteNote"
-      >Удалить</fa>
+      <burger-menu
+          :note="this.note"
+      />
     </nav>
     <h2 class="note-view__title">{{ note.title }}</h2>
     <p class="note-view__body">{{ note.body }}</p>
@@ -16,8 +15,10 @@
 
 <script>
 
+import BurgerMenu from "./MyBurgerMenu";
 export default {
   name: "note-view",
+  components: {BurgerMenu},
   props:{
     note:{
       type:Object,

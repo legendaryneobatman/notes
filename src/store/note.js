@@ -1,9 +1,7 @@
 export const note = {
   namespaced: true,
   state: () => ({
-    notes: JSON.parse(window.localStorage.getItem('notes')) || [
-        {id:Date.now(), title:'Заголовок заметки', body:'Тело заметки', noteStatus:false}
-    ],
+    notes:[],
     noteEdit:{id:Date.now(), title:'noteEdit.title', body:'noteEdit.title', noteStatus:false},
   }),
   getters: {
