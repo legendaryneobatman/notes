@@ -91,6 +91,7 @@ export default {
 
   margin: 0;
   padding-bottom: 0.7em;
+
   &-item {
     display: grid;
     grid-template-rows: 1fr auto;

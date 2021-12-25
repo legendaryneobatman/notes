@@ -3,6 +3,12 @@
       class="note-view"
       @click="showNoteEdit"
   >
+    <nav class="note-view__menu">
+      <fa
+          icon="ellipsis-v"
+          @click="deleteNote"
+      >Удалить</fa>
+    </nav>
     <h2 class="note-view__title">{{ note.title }}</h2>
     <p class="note-view__body">{{ note.body }}</p>
   </div>
@@ -19,7 +25,7 @@ export default {
   },
   methods: {
     deleteNote() {
-      this.$store.dispatch('note/deleteNote',)
+      this.$store.dispatch('note/deleteNote', this.note)
     },
     setEdit() {
       this.$store.dispatch('note/changeNoteStatus')
@@ -31,13 +37,6 @@ export default {
         this.onSubmit();
       }
     },
-    showNoteEdit() {
-      /* eslint-disable no-console */
-
-      /* eslint-disable no-console */
-    },
-
-
   },
 }
 </script>
@@ -46,12 +45,12 @@ export default {
 .note-view {
   display: flex;
   flex-direction: column;
-  background-color: #c4c4c4;
+  background-color: #eeeeee;
   border: 1px solid #4a4a4a;
   border-radius: 10px;
   font-family: $font-main;
   padding: 10px;
-
+  box-shadow: 0 20px 63px 2px rgba(7, 22, 34, 0.2);
 
   &__header {
     display: flex;
@@ -61,7 +60,6 @@ export default {
       display: inline-flex;
       width: 100%;
       height: 20px;
-
 
     }
     &__body {

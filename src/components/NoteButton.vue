@@ -13,6 +13,7 @@ export default {
   methods: {
     createNote() {
       this.$store.dispatch('note/addNote')
+      
     },
   }
 
@@ -33,6 +34,7 @@ export default {
   background: rgb(253, 201, 30);
   color: white;
   transition: background 2s linear;
+
 }
 
 button:hover {

@@ -26,6 +26,7 @@ export default {
   grid-column-gap: 0.7em;
   background-color: transparent;
   padding: 1em;
+  height: 100%;
 }
 
 </style>

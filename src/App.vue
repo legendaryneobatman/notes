@@ -1,5 +1,5 @@
 <template>
-  <div class="app" id="app" ref="app">
+  <div class="app" id="app">
     <app-header/>
     <note-list/>
     <note-button/>
@@ -40,7 +40,7 @@ export default {
 }
 
 html {
-  overflow: hidden;
+
   background-color: #e0e0e0;
 }
 
@@ -52,6 +52,5 @@ html {
 
 .app {
   background-color: $grey-light;
-  height: 100vh;
 }
 </style>

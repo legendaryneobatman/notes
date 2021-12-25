@@ -12,23 +12,21 @@ export const note = {
   mutations: {
     ADD_NOTE(state, note) {
       state.notes.push(note);
-      window.localStorage.setItem('notes', JSON.stringify(state.notes))
     },
     UPDATE_NOTE(state, note) {
       const index = state.notes.findIndex(item => item.id === note.id);
       state.notes[index] = note;
-      window.localStorage.setItem("notes", JSON.stringify(state.notes));
     },
     UPDATE_NOTE_FORM_TITLE(state, payload){
       const index = state.notes.findIndex(item => item.id === payload.note.id)
       /* eslint-disable no-console */
-      state.notes[index].title=event.target.value
+      state.notes[index].title=payload.event.target.value
       //console.log(state.notes[index].title, event.target.value)
     },
     UPDATE_NOTE_FORM_BODY(state, payload){
       const index = state.notes.findIndex(item => item.id === payload.note.id)
       /* eslint-disable no-console */
-      state.notes[index].body=event.target.value
+      state.notes[index].body=payload.event.target.value
       //console.log(state.notes[index].title, event.target.value)
     },
     DELETE_NOTE(state, note) {

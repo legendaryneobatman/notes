@@ -1,11 +1,13 @@
 <template>
+  <div class="my-input">
     <input
         :value="modelValue"
         @input="updateInput"
-        class="input"
+        class="my-input__field"
         type="text"
         placeholder="Заголовок"
     />
+  </div>
 </template>
 
 <script>
@@ -22,18 +24,26 @@ export default {
 }
 </script>
 
-<style scoped>
-
-.input {
-  display: block;
-  border: 1px solid #c4c4c4;
-  border-radius: 25px;
-  margin-bottom: 10px;
-  padding: 0.5em;
-  text-align: center;
+<style lang="scss" scoped>
+.my-input {
+  position: relative;
   width: 100%;
+  &__field{
+    display: block;
 
+    width: 100%;
+    padding: 10px;
+
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid #c4c4c4;
+    &:focus{
+      outline: none;
+    }
+   }
 }
+
+
 .input::placeholder:focus {
     color: transparent;
 }
