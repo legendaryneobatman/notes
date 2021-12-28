@@ -40,6 +40,7 @@ export default {
 }
 
 html {
+  height: 100vh;
 
   background-color: #e0e0e0;
 }

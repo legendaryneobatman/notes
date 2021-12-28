@@ -2,6 +2,10 @@
   <div
       class="note-form"
   >
+    <burger-menu
+        :note="this.note"
+        class="note-form__burger"
+    />
     <my-input
         class="note-form__title"
         type="text"
@@ -21,10 +25,11 @@
 
 <script>
 import MyInput from "./UI/MyInput";
+import BurgerMenu from "./UI/MyBurgerMenu";
 
 export default {
   name: "note-form",
-  components: {MyInput},
+  components: {BurgerMenu, MyInput},
   props: {
     note: {
       type: Object
@@ -57,11 +62,11 @@ export default {
 .note-form {
   display: flex;
   flex-direction: column;
-  background-color: #c4c4c4;
-  border: 1px solid #4a4a4a;
-  border-radius: 10px;
-  font-family: $font-main;
   padding: 10px;
+  &__burger{
+    position: absolute;
+    top: -20px;
+  }
 
   &__title {
     cursor: text;

@@ -23,11 +23,11 @@ export default {
 <style scoped>
 .note__list {
   column-count: 2;
-  grid-column-gap: 5em;
-  grid-row-gap: 5em;
+  grid-column-gap: 0.7em;
+
   background-color: transparent;
-  padding: 1em;
-  height: 100vh;
+
+  height: 100%;
 }
 
 </style>

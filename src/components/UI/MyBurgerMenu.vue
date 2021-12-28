@@ -44,29 +44,34 @@ export default {
     position: relative;
     display: block;
     top: 0;
-    left: 100%;
-    width: 5px;
-    height: 5px;
-    &_icon {
-      width: 6px;
-      height: 6px;
-      border-radius: 5px;
-      background: $font-black;
-      margin: 3px 0;
+    left: 97%;
+    width: 24px;
+    height: 24px;
+    border: 1px solid black;
+    border-radius: 50%;
+    font-size: 16px;
+    &-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
     }
     .dropdown {
       position: absolute;
       left: 0;
+      top: 50px;
+      transform: translate(-50%, -50%);
       z-index: 2;
-      top: 1em;
-      background-color: #fff;
+      border: 1px solid $grey-light;
+      background-color: $grey-dark;
+
       li {
         display: block;
         width: 100%;
       }
       a {
         width: 100%;
-        padding: 1em 18px;
+        padding: 0.5em 10px;
         display: inline-block;
         white-space: pre;
         &:hover {

@@ -3,11 +3,7 @@
       class="note-view"
       @click="showNoteEdit"
   >
-    <nav class="note-view__menu">
-      <burger-menu
-          :note="this.note"
-      />
-    </nav>
+    <burger-menu :note="this.note"/>
     <h2 class="note-view__title">{{ note.title }}</h2>
     <p class="note-view__body">{{ note.body }}</p>
   </div>
@@ -15,7 +11,7 @@
 
 <script>
 
-import BurgerMenu from "./MyBurgerMenu";
+import BurgerMenu from "./UI/MyBurgerMenu";
 export default {
   name: "note-view",
   components: {BurgerMenu},
@@ -46,22 +42,15 @@ export default {
 .note-view {
   display: flex;
   flex-direction: column;
-  background-color: #eeeeee;
-  border: 1px solid #4a4a4a;
-  border-radius: 10px;
   font-family: $font-main;
-  padding: 10px;
-  box-shadow: 0 20px 63px 2px rgba(7, 22, 34, 0.2);
-
+  margin: 10px;
+  overflow: hidden;
   &__header {
     display: flex;
     flex-direction: row;
-
     &__title {
       display: inline-flex;
       width: 100%;
-      height: 20px;
-
     }
     &__body {
 

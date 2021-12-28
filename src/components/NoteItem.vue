@@ -8,7 +8,6 @@
         :note="note"
         @mousedown="setHoldTime"
         @mouseup="clearTimer"
-
     />
     <note-form
         class="note-item"
@@ -88,9 +87,14 @@ export default {
   break-inside: avoid;
 
   min-height: 100px;
+  background-color: $white;
+  border-radius: 1em;
+  box-shadow: 0 20px 63px 2px rgba(7, 22, 34, 0.2);
+  overflow:visible;
 
-  margin: 0;
-  padding-bottom: 2em;
+  border:1px solid $grey-light;
+  padding: 10px;
+  margin-bottom: 1em;
 
   &-item {
     display: grid;

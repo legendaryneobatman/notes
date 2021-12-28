@@ -29,14 +29,14 @@ export default {
   position: relative;
   width: 100%;
   &__field{
-    display: block;
-
-    width: 100%;
-    padding: 10px;
-
     font-size: 16px;
+    padding: 10px;
+    margin: 10px;
+    display: block;
+    width: 100%;
     border: none;
-    border-bottom: 1px solid #c4c4c4;
+    border-bottom: 1px solid #ccc;
+    overflow: hidden;
     &:focus{
       outline: none;
     }
