@@ -13,7 +13,14 @@
         :value="this.noteForm.title"
         @input="updateNoteFormTitle"
     />
-    <my-input
+    <!--<my-input
+        class="note-form__body"
+        type="text"
+        placeholder="Тело заметки"
+        :value="this.noteForm.body"
+        @input="updateNoteFormBody"
+    />-->
+    <my-text-area
         class="note-form__body"
         type="text"
         placeholder="Тело заметки"
@@ -26,10 +33,11 @@
 <script>
 import MyInput from "./UI/MyInput";
 import BurgerMenu from "./UI/MyBurgerMenu";
+import MyTextArea from "./UI/MyTextArea";
 
 export default {
   name: "note-form",
-  components: {BurgerMenu, MyInput},
+  components: {MyTextArea, BurgerMenu, MyInput},
   props: {
     note: {
       type: Object
