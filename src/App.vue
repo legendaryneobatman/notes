@@ -3,6 +3,12 @@
     <app-header/>
     <note-list/>
     <note-button/>
+    <note-button/>
+    <note-button/>
+    <note-button/>
+    <note-button/>
+    <note-button/>
+    <note-button/>
   </div>
 </template>
 
