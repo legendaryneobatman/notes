@@ -5,5 +5,6 @@ module.exports = {
                 additionalData: `@import "@/scss/_variables.scss";`
             }
         }
-    }
+    },
+    publicPath: 'https://legendaryneobatman.github.io/notes'
 };
