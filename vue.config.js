@@ -6,5 +6,5 @@ module.exports = {
             }
         }
     },
-    publicPath: 'https://legendaryneobatman.github.io/notes'
+    publicPath: "/<REPO>/"
 };
